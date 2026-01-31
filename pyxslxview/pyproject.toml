@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyxslxview"
+version = "0.1.0"
+description = "High-fidelity XLSX file preview library"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "bluehints", email = "bluehints@example.com"}
+]
+keywords = ["xlsx", "excel", "preview", "render", "viewer"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Office/Business",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "Pillow>=9.0.0",
+    "openpyxl>=3.0.0",
+]
+
+[project.optional-dependencies]
+pdf = [
+    "reportlab>=3.6.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.900",
+    "black>=22.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bluehints/pyxslxview"
+Documentation = "https://github.com/bluehints/pyxslxview#readme"
+Repository = "https://github.com/bluehints/pyxslxview"
+Issues = "https://github.com/bluehints/pyxslxview/issues"
+
+[tool.setuptools]
+packages = ["pyxslxview"]
+
+[tool.setuptools.package-data]
+pyxslxview = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["pyxslxview/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["pyxslxview"]
+omit = ["pyxslxview/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
